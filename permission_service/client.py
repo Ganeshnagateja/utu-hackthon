@@ -42,7 +42,7 @@ from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.ai.generativelanguage_v1alpha import gapic_version as package_version
+from google.ai.generativelanguage_v1beta import gapic_version as package_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault, None]
@@ -61,10 +61,10 @@ _LOGGER = std_logging.getLogger(__name__)
 from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf import field_mask_pb2  # type: ignore
 
-from google.ai.generativelanguage_v1alpha.services.permission_service import pagers
-from google.ai.generativelanguage_v1alpha.types import permission as gag_permission
-from google.ai.generativelanguage_v1alpha.types import permission
-from google.ai.generativelanguage_v1alpha.types import permission_service
+from google.ai.generativelanguage_v1beta.services.permission_service import pagers
+from google.ai.generativelanguage_v1beta.types import permission as gag_permission
+from google.ai.generativelanguage_v1beta.types import permission
+from google.ai.generativelanguage_v1beta.types import permission_service
 
 from .transports.base import DEFAULT_CLIENT_INFO, PermissionServiceTransport
 from .transports.grpc import PermissionServiceGrpcTransport
@@ -671,9 +671,9 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 std_logging.DEBUG
             ):  # pragma: NO COVER
                 _LOGGER.debug(
-                    "Created client `google.ai.generativelanguage_v1alpha.PermissionServiceClient`.",
+                    "Created client `google.ai.generativelanguage_v1beta.PermissionServiceClient`.",
                     extra={
-                        "serviceName": "google.ai.generativelanguage.v1alpha.PermissionService",
+                        "serviceName": "google.ai.generativelanguage.v1beta.PermissionService",
                         "universeDomain": getattr(
                             self._transport._credentials, "universe_domain", ""
                         ),
@@ -684,7 +684,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                     }
                     if hasattr(self._transport, "_credentials")
                     else {
-                        "serviceName": "google.ai.generativelanguage.v1alpha.PermissionService",
+                        "serviceName": "google.ai.generativelanguage.v1beta.PermissionService",
                         "credentialsType": None,
                     },
                 )
@@ -712,14 +712,14 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_create_permission():
                 # Create a client
-                client = generativelanguage_v1alpha.PermissionServiceClient()
+                client = generativelanguage_v1beta.PermissionServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.CreatePermissionRequest(
+                request = generativelanguage_v1beta.CreatePermissionRequest(
                     parent="parent_value",
                 )
 
@@ -730,7 +730,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.CreatePermissionRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.CreatePermissionRequest, dict]):
                 The request object. Request to create a ``Permission``.
             parent (str):
                 Required. The parent resource of the ``Permission``.
@@ -740,7 +740,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            permission (google.ai.generativelanguage_v1alpha.types.Permission):
+            permission (google.ai.generativelanguage_v1beta.types.Permission):
                 Required. The permission to create.
                 This corresponds to the ``permission`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -754,7 +754,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.Permission:
+            google.ai.generativelanguage_v1beta.types.Permission:
                 Permission resource grants user,
                 group or the rest of the world access to
                 the PaLM API resource (e.g. a tuned
@@ -845,14 +845,14 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_get_permission():
                 # Create a client
-                client = generativelanguage_v1alpha.PermissionServiceClient()
+                client = generativelanguage_v1beta.PermissionServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.GetPermissionRequest(
+                request = generativelanguage_v1beta.GetPermissionRequest(
                     name="name_value",
                 )
 
@@ -863,7 +863,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.GetPermissionRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.GetPermissionRequest, dict]):
                 The request object. Request for getting information about a specific
                 ``Permission``.
             name (str):
@@ -885,7 +885,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.Permission:
+            google.ai.generativelanguage_v1beta.types.Permission:
                 Permission resource grants user,
                 group or the rest of the world access to
                 the PaLM API resource (e.g. a tuned
@@ -976,14 +976,14 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_list_permissions():
                 # Create a client
-                client = generativelanguage_v1alpha.PermissionServiceClient()
+                client = generativelanguage_v1beta.PermissionServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.ListPermissionsRequest(
+                request = generativelanguage_v1beta.ListPermissionsRequest(
                     parent="parent_value",
                 )
 
@@ -995,7 +995,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                     print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.ListPermissionsRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.ListPermissionsRequest, dict]):
                 The request object. Request for listing permissions.
             parent (str):
                 Required. The parent resource of the permissions.
@@ -1014,7 +1014,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.services.permission_service.pagers.ListPermissionsPager:
+            google.ai.generativelanguage_v1beta.services.permission_service.pagers.ListPermissionsPager:
                 Response from ListPermissions containing a paginated list of
                    permissions.
 
@@ -1099,14 +1099,14 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_update_permission():
                 # Create a client
-                client = generativelanguage_v1alpha.PermissionServiceClient()
+                client = generativelanguage_v1beta.PermissionServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.UpdatePermissionRequest(
+                request = generativelanguage_v1beta.UpdatePermissionRequest(
                 )
 
                 # Make the request
@@ -1116,9 +1116,9 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.UpdatePermissionRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.UpdatePermissionRequest, dict]):
                 The request object. Request to update the ``Permission``.
-            permission (google.ai.generativelanguage_v1alpha.types.Permission):
+            permission (google.ai.generativelanguage_v1beta.types.Permission):
                 Required. The permission to update.
 
                 The permission's ``name`` field is used to identify the
@@ -1144,7 +1144,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.Permission:
+            google.ai.generativelanguage_v1beta.types.Permission:
                 Permission resource grants user,
                 group or the rest of the world access to
                 the PaLM API resource (e.g. a tuned
@@ -1239,14 +1239,14 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_delete_permission():
                 # Create a client
-                client = generativelanguage_v1alpha.PermissionServiceClient()
+                client = generativelanguage_v1beta.PermissionServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.DeletePermissionRequest(
+                request = generativelanguage_v1beta.DeletePermissionRequest(
                     name="name_value",
                 )
 
@@ -1254,7 +1254,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 client.delete_permission(request=request)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.DeletePermissionRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.DeletePermissionRequest, dict]):
                 The request object. Request to delete the ``Permission``.
             name (str):
                 Required. The resource name of the permission. Formats:
@@ -1336,14 +1336,14 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_transfer_ownership():
                 # Create a client
-                client = generativelanguage_v1alpha.PermissionServiceClient()
+                client = generativelanguage_v1beta.PermissionServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.TransferOwnershipRequest(
+                request = generativelanguage_v1beta.TransferOwnershipRequest(
                     name="name_value",
                     email_address="email_address_value",
                 )
@@ -1355,7 +1355,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.TransferOwnershipRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.TransferOwnershipRequest, dict]):
                 The request object. Request to transfer the ownership of
                 the tuned model.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -1367,7 +1367,7 @@ class PermissionServiceClient(metaclass=PermissionServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.TransferOwnershipResponse:
+            google.ai.generativelanguage_v1beta.types.TransferOwnershipResponse:
                 Response from TransferOwnership.
         """
         # Create or coerce a protobuf request object.

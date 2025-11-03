@@ -18,7 +18,6 @@ import logging as std_logging
 import re
 from typing import (
     AsyncIterable,
-    AsyncIterator,
     Awaitable,
     Callable,
     Dict,
@@ -39,7 +38,7 @@ from google.api_core.client_options import ClientOptions
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.ai.generativelanguage_v1alpha import gapic_version as package_version
+from google.ai.generativelanguage_v1beta import gapic_version as package_version
 
 try:
     OptionalRetry = Union[retries.AsyncRetry, gapic_v1.method._MethodDefault, None]
@@ -48,9 +47,9 @@ except AttributeError:  # pragma: NO COVER
 
 from google.longrunning import operations_pb2  # type: ignore
 
-from google.ai.generativelanguage_v1alpha.types import generative_service, safety
-from google.ai.generativelanguage_v1alpha.types import content
-from google.ai.generativelanguage_v1alpha.types import content as gag_content
+from google.ai.generativelanguage_v1beta.types import generative_service, safety
+from google.ai.generativelanguage_v1beta.types import content
+from google.ai.generativelanguage_v1beta.types import content as gag_content
 
 from .client import GenerativeServiceClient
 from .transports.base import DEFAULT_CLIENT_INFO, GenerativeServiceTransport
@@ -284,9 +283,9 @@ class GenerativeServiceAsyncClient:
             std_logging.DEBUG
         ):  # pragma: NO COVER
             _LOGGER.debug(
-                "Created client `google.ai.generativelanguage_v1alpha.GenerativeServiceAsyncClient`.",
+                "Created client `google.ai.generativelanguage_v1beta.GenerativeServiceAsyncClient`.",
                 extra={
-                    "serviceName": "google.ai.generativelanguage.v1alpha.GenerativeService",
+                    "serviceName": "google.ai.generativelanguage.v1beta.GenerativeService",
                     "universeDomain": getattr(
                         self._client._transport._credentials, "universe_domain", ""
                     ),
@@ -297,7 +296,7 @@ class GenerativeServiceAsyncClient:
                 }
                 if hasattr(self._client._transport, "_credentials")
                 else {
-                    "serviceName": "google.ai.generativelanguage.v1alpha.GenerativeService",
+                    "serviceName": "google.ai.generativelanguage.v1beta.GenerativeService",
                     "credentialsType": None,
                 },
             )
@@ -333,14 +332,14 @@ class GenerativeServiceAsyncClient:
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             async def sample_generate_content():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceAsyncClient()
+                client = generativelanguage_v1beta.GenerativeServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.GenerateContentRequest(
+                request = generativelanguage_v1beta.GenerateContentRequest(
                     model="model_value",
                 )
 
@@ -351,7 +350,7 @@ class GenerativeServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Optional[Union[google.ai.generativelanguage_v1alpha.types.GenerateContentRequest, dict]]):
+            request (Optional[Union[google.ai.generativelanguage_v1beta.types.GenerateContentRequest, dict]]):
                 The request object. Request to generate a completion from
                 the model.
             model (:class:`str`):
@@ -363,7 +362,7 @@ class GenerativeServiceAsyncClient:
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            contents (:class:`MutableSequence[google.ai.generativelanguage_v1alpha.types.Content]`):
+            contents (:class:`MutableSequence[google.ai.generativelanguage_v1beta.types.Content]`):
                 Required. The content of the current conversation with
                 the model.
 
@@ -385,7 +384,7 @@ class GenerativeServiceAsyncClient:
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.GenerateContentResponse:
+            google.ai.generativelanguage_v1beta.types.GenerateContentResponse:
                 Response from the model supporting multiple candidate
                 responses.
 
@@ -474,14 +473,14 @@ class GenerativeServiceAsyncClient:
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             async def sample_generate_answer():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceAsyncClient()
+                client = generativelanguage_v1beta.GenerativeServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.GenerateAnswerRequest(
+                request = generativelanguage_v1beta.GenerateAnswerRequest(
                     model="model_value",
                     answer_style="VERBOSE",
                 )
@@ -493,7 +492,7 @@ class GenerativeServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Optional[Union[google.ai.generativelanguage_v1alpha.types.GenerateAnswerRequest, dict]]):
+            request (Optional[Union[google.ai.generativelanguage_v1beta.types.GenerateAnswerRequest, dict]]):
                 The request object. Request to generate a grounded answer from the
                 ``Model``.
             model (:class:`str`):
@@ -505,7 +504,7 @@ class GenerativeServiceAsyncClient:
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            contents (:class:`MutableSequence[google.ai.generativelanguage_v1alpha.types.Content]`):
+            contents (:class:`MutableSequence[google.ai.generativelanguage_v1beta.types.Content]`):
                 Required. The content of the current conversation with
                 the ``Model``. For single-turn queries, this is a single
                 question to answer. For multi-turn queries, this is a
@@ -519,7 +518,7 @@ class GenerativeServiceAsyncClient:
                 This corresponds to the ``contents`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            safety_settings (:class:`MutableSequence[google.ai.generativelanguage_v1alpha.types.SafetySetting]`):
+            safety_settings (:class:`MutableSequence[google.ai.generativelanguage_v1beta.types.SafetySetting]`):
                 Optional. A list of unique ``SafetySetting`` instances
                 for blocking unsafe content.
 
@@ -548,7 +547,7 @@ class GenerativeServiceAsyncClient:
                 This corresponds to the ``safety_settings`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            answer_style (:class:`google.ai.generativelanguage_v1alpha.types.GenerateAnswerRequest.AnswerStyle`):
+            answer_style (:class:`google.ai.generativelanguage_v1beta.types.GenerateAnswerRequest.AnswerStyle`):
                 Required. Style in which answers
                 should be returned.
 
@@ -564,7 +563,7 @@ class GenerativeServiceAsyncClient:
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.GenerateAnswerResponse:
+            google.ai.generativelanguage_v1beta.types.GenerateAnswerResponse:
                 Response from the model for a
                 grounded answer.
 
@@ -646,14 +645,14 @@ class GenerativeServiceAsyncClient:
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             async def sample_stream_generate_content():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceAsyncClient()
+                client = generativelanguage_v1beta.GenerativeServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.GenerateContentRequest(
+                request = generativelanguage_v1beta.GenerateContentRequest(
                     model="model_value",
                 )
 
@@ -665,7 +664,7 @@ class GenerativeServiceAsyncClient:
                     print(response)
 
         Args:
-            request (Optional[Union[google.ai.generativelanguage_v1alpha.types.GenerateContentRequest, dict]]):
+            request (Optional[Union[google.ai.generativelanguage_v1beta.types.GenerateContentRequest, dict]]):
                 The request object. Request to generate a completion from
                 the model.
             model (:class:`str`):
@@ -677,7 +676,7 @@ class GenerativeServiceAsyncClient:
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            contents (:class:`MutableSequence[google.ai.generativelanguage_v1alpha.types.Content]`):
+            contents (:class:`MutableSequence[google.ai.generativelanguage_v1beta.types.Content]`):
                 Required. The content of the current conversation with
                 the model.
 
@@ -699,7 +698,7 @@ class GenerativeServiceAsyncClient:
                 be of type `bytes`.
 
         Returns:
-            AsyncIterable[google.ai.generativelanguage_v1alpha.types.GenerateContentResponse]:
+            AsyncIterable[google.ai.generativelanguage_v1beta.types.GenerateContentResponse]:
                 Response from the model supporting multiple candidate
                 responses.
 
@@ -785,14 +784,14 @@ class GenerativeServiceAsyncClient:
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             async def sample_embed_content():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceAsyncClient()
+                client = generativelanguage_v1beta.GenerativeServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.EmbedContentRequest(
+                request = generativelanguage_v1beta.EmbedContentRequest(
                     model="model_value",
                 )
 
@@ -803,7 +802,7 @@ class GenerativeServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Optional[Union[google.ai.generativelanguage_v1alpha.types.EmbedContentRequest, dict]]):
+            request (Optional[Union[google.ai.generativelanguage_v1beta.types.EmbedContentRequest, dict]]):
                 The request object. Request containing the ``Content`` for the model to
                 embed.
             model (:class:`str`):
@@ -818,7 +817,7 @@ class GenerativeServiceAsyncClient:
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            content (:class:`google.ai.generativelanguage_v1alpha.types.Content`):
+            content (:class:`google.ai.generativelanguage_v1beta.types.Content`):
                 Required. The content to embed. Only the ``parts.text``
                 fields will be counted.
 
@@ -834,7 +833,7 @@ class GenerativeServiceAsyncClient:
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.EmbedContentResponse:
+            google.ai.generativelanguage_v1beta.types.EmbedContentResponse:
                 The response to an EmbedContentRequest.
         """
         # Create or coerce a protobuf request object.
@@ -912,17 +911,17 @@ class GenerativeServiceAsyncClient:
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             async def sample_batch_embed_contents():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceAsyncClient()
+                client = generativelanguage_v1beta.GenerativeServiceAsyncClient()
 
                 # Initialize request argument(s)
-                requests = generativelanguage_v1alpha.EmbedContentRequest()
+                requests = generativelanguage_v1beta.EmbedContentRequest()
                 requests.model = "model_value"
 
-                request = generativelanguage_v1alpha.BatchEmbedContentsRequest(
+                request = generativelanguage_v1beta.BatchEmbedContentsRequest(
                     model="model_value",
                     requests=requests,
                 )
@@ -934,7 +933,7 @@ class GenerativeServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Optional[Union[google.ai.generativelanguage_v1alpha.types.BatchEmbedContentsRequest, dict]]):
+            request (Optional[Union[google.ai.generativelanguage_v1beta.types.BatchEmbedContentsRequest, dict]]):
                 The request object. Batch request to get embeddings from
                 the model for a list of prompts.
             model (:class:`str`):
@@ -949,7 +948,7 @@ class GenerativeServiceAsyncClient:
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            requests (:class:`MutableSequence[google.ai.generativelanguage_v1alpha.types.EmbedContentRequest]`):
+            requests (:class:`MutableSequence[google.ai.generativelanguage_v1beta.types.EmbedContentRequest]`):
                 Required. Embed requests for the batch. The model in
                 each of these requests must match the model specified
                 ``BatchEmbedContentsRequest.model``.
@@ -966,7 +965,7 @@ class GenerativeServiceAsyncClient:
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.BatchEmbedContentsResponse:
+            google.ai.generativelanguage_v1beta.types.BatchEmbedContentsResponse:
                 The response to a BatchEmbedContentsRequest.
         """
         # Create or coerce a protobuf request object.
@@ -1041,14 +1040,14 @@ class GenerativeServiceAsyncClient:
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             async def sample_count_tokens():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceAsyncClient()
+                client = generativelanguage_v1beta.GenerativeServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.CountTokensRequest(
+                request = generativelanguage_v1beta.CountTokensRequest(
                     model="model_value",
                 )
 
@@ -1059,7 +1058,7 @@ class GenerativeServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Optional[Union[google.ai.generativelanguage_v1alpha.types.CountTokensRequest, dict]]):
+            request (Optional[Union[google.ai.generativelanguage_v1beta.types.CountTokensRequest, dict]]):
                 The request object. Counts the number of tokens in the ``prompt`` sent to a
                 model.
 
@@ -1077,7 +1076,7 @@ class GenerativeServiceAsyncClient:
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            contents (:class:`MutableSequence[google.ai.generativelanguage_v1alpha.types.Content]`):
+            contents (:class:`MutableSequence[google.ai.generativelanguage_v1beta.types.Content]`):
                 Optional. The input given to the model as a prompt. This
                 field is ignored when ``generate_content_request`` is
                 set.
@@ -1094,7 +1093,7 @@ class GenerativeServiceAsyncClient:
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.CountTokensResponse:
+            google.ai.generativelanguage_v1beta.types.CountTokensResponse:
                 A response from CountTokens.
 
                    It returns the model's token_count for the prompt.
@@ -1140,99 +1139,6 @@ class GenerativeServiceAsyncClient:
         # Send the request.
         response = await rpc(
             request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
-
-        # Done; return the response.
-        return response
-
-    def bidi_generate_content(
-        self,
-        requests: Optional[
-            AsyncIterator[generative_service.BidiGenerateContentClientMessage]
-        ] = None,
-        *,
-        retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: Union[float, object] = gapic_v1.method.DEFAULT,
-        metadata: Sequence[Tuple[str, Union[str, bytes]]] = (),
-    ) -> Awaitable[AsyncIterable[generative_service.BidiGenerateContentServerMessage]]:
-        r"""Low-Latency bidirectional streaming API that supports
-        audio and video streaming inputs can produce multimodal
-        output streams (audio and text).
-
-        .. code-block:: python
-
-            # This snippet has been automatically generated and should be regarded as a
-            # code template only.
-            # It will require modifications to work:
-            # - It may require correct/in-range values for request initialization.
-            # - It may require specifying regional endpoints when creating the service
-            #   client as shown in:
-            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
-
-            async def sample_bidi_generate_content():
-                # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceAsyncClient()
-
-                # Initialize request argument(s)
-                setup = generativelanguage_v1alpha.BidiGenerateContentSetup()
-                setup.model = "model_value"
-
-                request = generativelanguage_v1alpha.BidiGenerateContentClientMessage(
-                    setup=setup,
-                )
-
-                # This method expects an iterator which contains
-                # 'generativelanguage_v1alpha.BidiGenerateContentClientMessage' objects
-                # Here we create a generator that yields a single `request` for
-                # demonstrative purposes.
-                requests = [request]
-
-                def request_generator():
-                    for request in requests:
-                        yield request
-
-                # Make the request
-                stream = await client.bidi_generate_content(requests=request_generator())
-
-                # Handle the response
-                async for response in stream:
-                    print(response)
-
-        Args:
-            requests (AsyncIterator[`google.ai.generativelanguage_v1alpha.types.BidiGenerateContentClientMessage`]):
-                The request object AsyncIterator. Messages sent by the client in the
-                BidiGenerateContent call.
-            retry (google.api_core.retry_async.AsyncRetry): Designation of what errors, if any,
-                should be retried.
-            timeout (float): The timeout for this request.
-            metadata (Sequence[Tuple[str, Union[str, bytes]]]): Key/value pairs which should be
-                sent along with the request as metadata. Normally, each value must be of type `str`,
-                but for metadata keys ending with the suffix `-bin`, the corresponding values must
-                be of type `bytes`.
-
-        Returns:
-            AsyncIterable[google.ai.generativelanguage_v1alpha.types.BidiGenerateContentServerMessage]:
-                Response message for the
-                BidiGenerateContent call.
-
-        """
-
-        # Wrap the RPC method; this adds retry and timeout information,
-        # and friendly error handling.
-        rpc = self._client._transport._wrapped_methods[
-            self._client._transport.bidi_generate_content
-        ]
-
-        # Validate the universe domain.
-        self._client._validate_universe_domain()
-
-        # Send the request.
-        response = rpc(
-            requests,
             retry=retry,
             timeout=timeout,
             metadata=metadata,
