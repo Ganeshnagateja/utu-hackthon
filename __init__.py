@@ -1,13 +1,23 @@
-from typing import List, Optional
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2012-2019 Vinay Sajip.
+# Licensed to the Python Software Foundation under a contributor agreement.
+# See LICENSE.txt and CONTRIBUTORS.txt.
+#
+import logging
 
-__version__ = "21.2.4"
+__version__ = '0.3.2'
 
+class DistlibException(Exception):
+    pass
 
-def main(args: Optional[List[str]] = None) -> int:
-    """This is an internal API only meant for use by pip's own console scripts.
+try:
+    from logging import NullHandler
+except ImportError: # pragma: no cover
+    class NullHandler(logging.Handler):
+        def handle(self, record): pass
+        def emit(self, record): pass
+        def createLock(self): self.lock = None
 
-    For additional details, see https://github.com/pypa/pip/issues/7498.
-    """
-    from pip._internal.utils.entrypoints import _wrapper
-
-    return _wrapper(args)
+logger = logging.getLogger(__name__)
+logger.addHandler(NullHandler())
