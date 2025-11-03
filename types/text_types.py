@@ -12,18 +12,21 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-"""A collection of type definitions used throughout the library."""
+from __future__ import annotations
 
-from google.generativeai.types.citation_types import *
-from google.generativeai.types.content_types import *
-from google.generativeai.types.file_types import *
-from google.generativeai.types.generation_types import *
-from google.generativeai.types.helper_types import *
-from google.generativeai.types.model_types import *
-from google.generativeai.types.permission_types import *
-from google.generativeai.types.safety_types import *
+import sys
+import abc
+import dataclasses
+from typing import Any, Dict, List
+from typing_extensions import TypedDict
+
+from google.generativeai import string_utils
+from google.generativeai.types import citation_types
 
 
-del model_types
-del citation_types
-del safety_types
+class EmbeddingDict(TypedDict):
+    embedding: list[float]
+
+
+class BatchEmbeddingDict(TypedDict):
+    embedding: list[list[float]]
