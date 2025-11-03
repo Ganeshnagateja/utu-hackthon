@@ -25,13 +25,14 @@ from google.api_core import gapic_v1, grpc_helpers_async
 from google.api_core import retry_async as retries
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf.json_format import MessageToJson
 import google.protobuf.message
 import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 import proto  # type: ignore
 
-from google.ai.generativelanguage_v1beta2.types import discuss_service
+from google.ai.generativelanguage_v1beta3.types import discuss_service
 
 from .base import DEFAULT_CLIENT_INFO, DiscussServiceTransport
 from .grpc import DiscussServiceGrpcTransport
@@ -74,7 +75,7 @@ class _LoggingClientAIOInterceptor(
             _LOGGER.debug(
                 f"Sending request for {client_call_details.method}",
                 extra={
-                    "serviceName": "google.ai.generativelanguage.v1beta2.DiscussService",
+                    "serviceName": "google.ai.generativelanguage.v1beta3.DiscussService",
                     "rpcName": str(client_call_details.method),
                     "request": grpc_request,
                     "metadata": grpc_request["metadata"],
@@ -104,7 +105,7 @@ class _LoggingClientAIOInterceptor(
             _LOGGER.debug(
                 f"Received response to rpc {client_call_details.method}.",
                 extra={
-                    "serviceName": "google.ai.generativelanguage.v1beta2.DiscussService",
+                    "serviceName": "google.ai.generativelanguage.v1beta3.DiscussService",
                     "rpcName": str(client_call_details.method),
                     "response": grpc_response,
                     "metadata": grpc_response["metadata"],
@@ -354,7 +355,7 @@ class DiscussServiceGrpcAsyncIOTransport(DiscussServiceTransport):
         # to pass in the functions for each.
         if "generate_message" not in self._stubs:
             self._stubs["generate_message"] = self._logged_channel.unary_unary(
-                "/google.ai.generativelanguage.v1beta2.DiscussService/GenerateMessage",
+                "/google.ai.generativelanguage.v1beta3.DiscussService/GenerateMessage",
                 request_serializer=discuss_service.GenerateMessageRequest.serialize,
                 response_deserializer=discuss_service.GenerateMessageResponse.deserialize,
             )
@@ -384,7 +385,7 @@ class DiscussServiceGrpcAsyncIOTransport(DiscussServiceTransport):
         # to pass in the functions for each.
         if "count_message_tokens" not in self._stubs:
             self._stubs["count_message_tokens"] = self._logged_channel.unary_unary(
-                "/google.ai.generativelanguage.v1beta2.DiscussService/CountMessageTokens",
+                "/google.ai.generativelanguage.v1beta3.DiscussService/CountMessageTokens",
                 request_serializer=discuss_service.CountMessageTokensRequest.serialize,
                 response_deserializer=discuss_service.CountMessageTokensResponse.deserialize,
             )
@@ -395,30 +396,12 @@ class DiscussServiceGrpcAsyncIOTransport(DiscussServiceTransport):
         self._wrapped_methods = {
             self.generate_message: self._wrap_method(
                 self.generate_message,
-                default_retry=retries.AsyncRetry(
-                    initial=1.0,
-                    maximum=10.0,
-                    multiplier=1.3,
-                    predicate=retries.if_exception_type(
-                        core_exceptions.ServiceUnavailable,
-                    ),
-                    deadline=60.0,
-                ),
-                default_timeout=60.0,
+                default_timeout=None,
                 client_info=client_info,
             ),
             self.count_message_tokens: self._wrap_method(
                 self.count_message_tokens,
-                default_retry=retries.AsyncRetry(
-                    initial=1.0,
-                    maximum=10.0,
-                    multiplier=1.3,
-                    predicate=retries.if_exception_type(
-                        core_exceptions.ServiceUnavailable,
-                    ),
-                    deadline=60.0,
-                ),
-                default_timeout=60.0,
+                default_timeout=None,
                 client_info=client_info,
             ),
         }

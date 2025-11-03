@@ -21,7 +21,7 @@ from google.protobuf import timestamp_pb2  # type: ignore
 import proto  # type: ignore
 
 __protobuf__ = proto.module(
-    package="google.ai.generativelanguage.v1beta",
+    package="google.ai.generativelanguage.v1beta3",
     manifest={
         "TunedModel",
         "TunedModelSource",
@@ -47,14 +47,14 @@ class TunedModel(proto.Message):
     .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
-        tuned_model_source (google.ai.generativelanguage_v1beta.types.TunedModelSource):
+        tuned_model_source (google.ai.generativelanguage_v1beta3.types.TunedModelSource):
             Optional. TunedModel to use as the starting
             point for training the new model.
 
             This field is a member of `oneof`_ ``source_model``.
         base_model (str):
             Immutable. The name of the ``Model`` to tune. Example:
-            ``models/gemini-1.5-flash-001``
+            ``models/text-bison-001``
 
             This field is a member of `oneof`_ ``source_model``.
         name (str):
@@ -63,11 +63,8 @@ class TunedModel(proto.Message):
             display_name is set on create, the id portion of the name
             will be set by concatenating the words of the display_name
             with hyphens and adding a random portion for uniqueness.
-
-            Example:
-
-            -  display_name = ``Sentence Translator``
-            -  name = ``tunedModels/sentence-translator-u3b7m``
+            Example: display_name = "Sentence Translator" name =
+            "tunedModels/sentence-translator-u3b7m".
         display_name (str):
             Optional. The name to display for this model
             in user interfaces. The display name must be up
@@ -107,7 +104,7 @@ class TunedModel(proto.Message):
             model while creating the model.
 
             This field is a member of `oneof`_ ``_top_k``.
-        state (google.ai.generativelanguage_v1beta.types.TunedModel.State):
+        state (google.ai.generativelanguage_v1beta3.types.TunedModel.State):
             Output only. The state of the tuned model.
         create_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. The timestamp when this model
@@ -115,12 +112,9 @@ class TunedModel(proto.Message):
         update_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. The timestamp when this model
             was updated.
-        tuning_task (google.ai.generativelanguage_v1beta.types.TuningTask):
+        tuning_task (google.ai.generativelanguage_v1beta3.types.TuningTask):
             Required. The tuning task that creates the
             tuned model.
-        reader_project_numbers (MutableSequence[int]):
-            Optional. List of project numbers that have
-            read access to the tuned model.
     """
 
     class State(proto.Enum):
@@ -199,10 +193,6 @@ class TunedModel(proto.Message):
         number=10,
         message="TuningTask",
     )
-    reader_project_numbers: MutableSequence[int] = proto.RepeatedField(
-        proto.INT64,
-        number=14,
-    )
 
 
 class TunedModelSource(proto.Message):
@@ -216,7 +206,7 @@ class TunedModelSource(proto.Message):
         base_model (str):
             Output only. The name of the base ``Model`` this
             ``TunedModel`` was tuned from. Example:
-            ``models/gemini-1.5-flash-001``
+            ``models/text-bison-001``
     """
 
     tuned_model: str = proto.Field(
@@ -239,12 +229,12 @@ class TuningTask(proto.Message):
         complete_time (google.protobuf.timestamp_pb2.Timestamp):
             Output only. The timestamp when tuning this
             model completed.
-        snapshots (MutableSequence[google.ai.generativelanguage_v1beta.types.TuningSnapshot]):
+        snapshots (MutableSequence[google.ai.generativelanguage_v1beta3.types.TuningSnapshot]):
             Output only. Metrics collected during tuning.
-        training_data (google.ai.generativelanguage_v1beta.types.Dataset):
+        training_data (google.ai.generativelanguage_v1beta3.types.Dataset):
             Required. Input only. Immutable. The model
             training data.
-        hyperparameters (google.ai.generativelanguage_v1beta.types.Hyperparameters):
+        hyperparameters (google.ai.generativelanguage_v1beta3.types.Hyperparameters):
             Immutable. Hyperparameters controlling the
             tuning process. If not provided, default values
             will be used.
@@ -278,57 +268,33 @@ class TuningTask(proto.Message):
 
 
 class Hyperparameters(proto.Message):
-    r"""Hyperparameters controlling the tuning process. Read more at
-    https://ai.google.dev/docs/model_tuning_guidance
-
-    This message has `oneof`_ fields (mutually exclusive fields).
-    For each oneof, at most one member field can be set at the same time.
-    Setting any member of the oneof automatically clears all other
-    members.
+    r"""Hyperparameters controlling the tuning process.
 
     .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
-        learning_rate (float):
-            Optional. Immutable. The learning rate
-            hyperparameter for tuning. If not set, a default
-            of 0.001 or 0.0002 will be calculated based on
-            the number of training examples.
-
-            This field is a member of `oneof`_ ``learning_rate_option``.
-        learning_rate_multiplier (float):
-            Optional. Immutable. The learning rate multiplier is used to
-            calculate a final learning_rate based on the default
-            (recommended) value. Actual learning rate :=
-            learning_rate_multiplier \* default learning rate Default
-            learning rate is dependent on base model and dataset size.
-            If not set, a default of 1.0 will be used.
-
-            This field is a member of `oneof`_ ``learning_rate_option``.
         epoch_count (int):
             Immutable. The number of training epochs. An
             epoch is one pass through the training data. If
-            not set, a default of 5 will be used.
+            not set, a default of 10 will be used.
 
             This field is a member of `oneof`_ ``_epoch_count``.
         batch_size (int):
             Immutable. The batch size hyperparameter for
-            tuning. If not set, a default of 4 or 16 will be
-            used based on the number of training examples.
+            tuning. If not set, a default of 16 or 64 will
+            be used based on the number of training
+            examples.
 
             This field is a member of `oneof`_ ``_batch_size``.
+        learning_rate (float):
+            Immutable. The learning rate hyperparameter
+            for tuning. If not set, a default of 0.0002 or
+            0.002 will be calculated based on the number of
+            training examples.
+
+            This field is a member of `oneof`_ ``_learning_rate``.
     """
 
-    learning_rate: float = proto.Field(
-        proto.FLOAT,
-        number=16,
-        oneof="learning_rate_option",
-    )
-    learning_rate_multiplier: float = proto.Field(
-        proto.FLOAT,
-        number=17,
-        oneof="learning_rate_option",
-    )
     epoch_count: int = proto.Field(
         proto.INT32,
         number=14,
@@ -339,6 +305,11 @@ class Hyperparameters(proto.Message):
         number=15,
         optional=True,
     )
+    learning_rate: float = proto.Field(
+        proto.FLOAT,
+        number=16,
+        optional=True,
+    )
 
 
 class Dataset(proto.Message):
@@ -347,9 +318,8 @@ class Dataset(proto.Message):
     .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
-        examples (google.ai.generativelanguage_v1beta.types.TuningExamples):
-            Optional. Inline examples with simple
-            input/output text.
+        examples (google.ai.generativelanguage_v1beta3.types.TuningExamples):
+            Optional. Inline examples.
 
             This field is a member of `oneof`_ ``dataset``.
     """
@@ -363,13 +333,14 @@ class Dataset(proto.Message):
 
 
 class TuningExamples(proto.Message):
-    r"""A set of tuning examples. Can be training or validation data.
+    r"""A set of tuning examples. Can be training or validatation
+    data.
 
     Attributes:
-        examples (MutableSequence[google.ai.generativelanguage_v1beta.types.TuningExample]):
-            The examples. Example input can be for text
-            or discuss, but all examples in a set must be of
-            the same type.
+        examples (MutableSequence[google.ai.generativelanguage_v1beta3.types.TuningExample]):
+            Required. The examples. Example input can be
+            for text or discuss, but all examples in a set
+            must be of the same type.
     """
 
     examples: MutableSequence["TuningExample"] = proto.RepeatedField(

@@ -18,9 +18,10 @@ import re
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple, Union
 
 from google.api_core import gapic_v1, path_template
+from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf import json_format
 
-from google.ai.generativelanguage_v1beta2.types import discuss_service
+from google.ai.generativelanguage_v1beta3.types import discuss_service
 
 from .base import DEFAULT_CLIENT_INFO, DiscussServiceTransport
 
@@ -106,7 +107,7 @@ class _BaseDiscussServiceRestTransport(DiscussServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "post",
-                    "uri": "/v1beta2/{model=models/*}:countMessageTokens",
+                    "uri": "/v1beta3/{model=models/*}:countMessageTokens",
                     "body": "*",
                 },
             ]
@@ -163,7 +164,7 @@ class _BaseDiscussServiceRestTransport(DiscussServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "post",
-                    "uri": "/v1beta2/{model=models/*}:generateMessage",
+                    "uri": "/v1beta3/{model=models/*}:generateMessage",
                     "body": "*",
                 },
             ]

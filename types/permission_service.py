@@ -20,10 +20,10 @@ from typing import MutableMapping, MutableSequence
 from google.protobuf import field_mask_pb2  # type: ignore
 import proto  # type: ignore
 
-from google.ai.generativelanguage_v1beta.types import permission as gag_permission
+from google.ai.generativelanguage_v1beta3.types import permission as gag_permission
 
 __protobuf__ = proto.module(
-    package="google.ai.generativelanguage.v1beta",
+    package="google.ai.generativelanguage.v1beta3",
     manifest={
         "CreatePermissionRequest",
         "GetPermissionRequest",
@@ -42,9 +42,9 @@ class CreatePermissionRequest(proto.Message):
 
     Attributes:
         parent (str):
-            Required. The parent resource of the ``Permission``.
-            Formats: ``tunedModels/{tuned_model}`` ``corpora/{corpus}``
-        permission (google.ai.generativelanguage_v1beta.types.Permission):
+            Required. The parent resource of the ``Permission``. Format:
+            tunedModels/{tuned_model}
+        permission (google.ai.generativelanguage_v1beta3.types.Permission):
             Required. The permission to create.
     """
 
@@ -66,9 +66,8 @@ class GetPermissionRequest(proto.Message):
         name (str):
             Required. The resource name of the permission.
 
-            Formats:
-            ``tunedModels/{tuned_model}/permissions/{permission}``
-            ``corpora/{corpus}/permissions/{permission}``
+            Format:
+            ``tunedModels/{tuned_model}permissions/{permission}``
     """
 
     name: str = proto.Field(
@@ -82,8 +81,8 @@ class ListPermissionsRequest(proto.Message):
 
     Attributes:
         parent (str):
-            Required. The parent resource of the permissions. Formats:
-            ``tunedModels/{tuned_model}`` ``corpora/{corpus}``
+            Required. The parent resource of the permissions. Format:
+            tunedModels/{tuned_model}
         page_size (int):
             Optional. The maximum number of ``Permission``\ s to return
             (per page). The service may return fewer permissions.
@@ -122,7 +121,7 @@ class ListPermissionsResponse(proto.Message):
     permissions.
 
     Attributes:
-        permissions (MutableSequence[google.ai.generativelanguage_v1beta.types.Permission]):
+        permissions (MutableSequence[google.ai.generativelanguage_v1beta3.types.Permission]):
             Returned permissions.
         next_page_token (str):
             A token, which can be sent as ``page_token`` to retrieve the
@@ -150,7 +149,7 @@ class UpdatePermissionRequest(proto.Message):
     r"""Request to update the ``Permission``.
 
     Attributes:
-        permission (google.ai.generativelanguage_v1beta.types.Permission):
+        permission (google.ai.generativelanguage_v1beta3.types.Permission):
             Required. The permission to update.
 
             The permission's ``name`` field is used to identify the
@@ -178,9 +177,8 @@ class DeletePermissionRequest(proto.Message):
 
     Attributes:
         name (str):
-            Required. The resource name of the permission. Formats:
+            Required. The resource name of the permission. Format:
             ``tunedModels/{tuned_model}/permissions/{permission}``
-            ``corpora/{corpus}/permissions/{permission}``
     """
 
     name: str = proto.Field(
@@ -195,7 +193,7 @@ class TransferOwnershipRequest(proto.Message):
     Attributes:
         name (str):
             Required. The resource name of the tuned model to transfer
-            ownership.
+            ownership .
 
             Format: ``tunedModels/my-model-id``
         email_address (str):

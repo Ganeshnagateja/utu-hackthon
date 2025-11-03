@@ -42,7 +42,7 @@ from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.ai.generativelanguage_v1beta2 import gapic_version as package_version
+from google.ai.generativelanguage_v1beta3 import gapic_version as package_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault, None]
@@ -58,7 +58,9 @@ except ImportError:  # pragma: NO COVER
 
 _LOGGER = std_logging.getLogger(__name__)
 
-from google.ai.generativelanguage_v1beta2.types import discuss_service, safety
+from google.longrunning import operations_pb2  # type: ignore
+
+from google.ai.generativelanguage_v1beta3.types import discuss_service, safety
 
 from .transports.base import DEFAULT_CLIENT_INFO, DiscussServiceTransport
 from .transports.grpc import DiscussServiceGrpcTransport
@@ -658,9 +660,9 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
                 std_logging.DEBUG
             ):  # pragma: NO COVER
                 _LOGGER.debug(
-                    "Created client `google.ai.generativelanguage_v1beta2.DiscussServiceClient`.",
+                    "Created client `google.ai.generativelanguage_v1beta3.DiscussServiceClient`.",
                     extra={
-                        "serviceName": "google.ai.generativelanguage.v1beta2.DiscussService",
+                        "serviceName": "google.ai.generativelanguage.v1beta3.DiscussService",
                         "universeDomain": getattr(
                             self._transport._credentials, "universe_domain", ""
                         ),
@@ -671,7 +673,7 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
                     }
                     if hasattr(self._transport, "_credentials")
                     else {
-                        "serviceName": "google.ai.generativelanguage.v1beta2.DiscussService",
+                        "serviceName": "google.ai.generativelanguage.v1beta3.DiscussService",
                         "credentialsType": None,
                     },
                 )
@@ -702,17 +704,17 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1beta2
+            from google.ai import generativelanguage_v1beta3
 
             def sample_generate_message():
                 # Create a client
-                client = generativelanguage_v1beta2.DiscussServiceClient()
+                client = generativelanguage_v1beta3.DiscussServiceClient()
 
                 # Initialize request argument(s)
-                prompt = generativelanguage_v1beta2.MessagePrompt()
+                prompt = generativelanguage_v1beta3.MessagePrompt()
                 prompt.messages.content = "content_value"
 
-                request = generativelanguage_v1beta2.GenerateMessageRequest(
+                request = generativelanguage_v1beta3.GenerateMessageRequest(
                     model="model_value",
                     prompt=prompt,
                 )
@@ -724,7 +726,7 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1beta2.types.GenerateMessageRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta3.types.GenerateMessageRequest, dict]):
                 The request object. Request to generate a message
                 response from the model.
             model (str):
@@ -735,7 +737,7 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            prompt (google.ai.generativelanguage_v1beta2.types.MessagePrompt):
+            prompt (google.ai.generativelanguage_v1beta3.types.MessagePrompt):
                 Required. The structured textual
                 input given to the model as a prompt.
                 Given a
@@ -800,7 +802,7 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1beta2.types.GenerateMessageResponse:
+            google.ai.generativelanguage_v1beta3.types.GenerateMessageResponse:
                 The response from the model.
 
                 This includes candidate messages and
@@ -887,17 +889,17 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1beta2
+            from google.ai import generativelanguage_v1beta3
 
             def sample_count_message_tokens():
                 # Create a client
-                client = generativelanguage_v1beta2.DiscussServiceClient()
+                client = generativelanguage_v1beta3.DiscussServiceClient()
 
                 # Initialize request argument(s)
-                prompt = generativelanguage_v1beta2.MessagePrompt()
+                prompt = generativelanguage_v1beta3.MessagePrompt()
                 prompt.messages.content = "content_value"
 
-                request = generativelanguage_v1beta2.CountMessageTokensRequest(
+                request = generativelanguage_v1beta3.CountMessageTokensRequest(
                     model="model_value",
                     prompt=prompt,
                 )
@@ -909,7 +911,7 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1beta2.types.CountMessageTokensRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta3.types.CountMessageTokensRequest, dict]):
                 The request object. Counts the number of tokens in the ``prompt`` sent to a
                 model.
 
@@ -927,7 +929,7 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            prompt (google.ai.generativelanguage_v1beta2.types.MessagePrompt):
+            prompt (google.ai.generativelanguage_v1beta3.types.MessagePrompt):
                 Required. The prompt, whose token
                 count is to be returned.
 
@@ -943,7 +945,7 @@ class DiscussServiceClient(metaclass=DiscussServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1beta2.types.CountMessageTokensResponse:
+            google.ai.generativelanguage_v1beta3.types.CountMessageTokensResponse:
                 A response from CountMessageTokens.
 
                    It returns the model's token_count for the prompt.
