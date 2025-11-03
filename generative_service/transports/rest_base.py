@@ -21,7 +21,7 @@ from google.api_core import gapic_v1, path_template
 from google.longrunning import operations_pb2  # type: ignore
 from google.protobuf import json_format
 
-from google.ai.generativelanguage_v1alpha.types import generative_service
+from google.ai.generativelanguage_v1beta.types import generative_service
 
 from .base import DEFAULT_CLIENT_INFO, GenerativeServiceTransport
 
@@ -107,7 +107,7 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "post",
-                    "uri": "/v1alpha/{model=models/*}:batchEmbedContents",
+                    "uri": "/v1beta/{model=models/*}:batchEmbedContents",
                     "body": "*",
                 },
             ]
@@ -145,10 +145,6 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             query_params["$alt"] = "json;enum-encoding=int"
             return query_params
 
-    class _BaseBidiGenerateContent:
-        def __hash__(self):  # pragma: NO COVER
-            return NotImplementedError("__hash__ must be implemented.")
-
     class _BaseCountTokens:
         def __hash__(self):  # pragma: NO COVER
             return NotImplementedError("__hash__ must be implemented.")
@@ -168,7 +164,7 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "post",
-                    "uri": "/v1alpha/{model=models/*}:countTokens",
+                    "uri": "/v1beta/{model=models/*}:countTokens",
                     "body": "*",
                 },
             ]
@@ -225,7 +221,7 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "post",
-                    "uri": "/v1alpha/{model=models/*}:embedContent",
+                    "uri": "/v1beta/{model=models/*}:embedContent",
                     "body": "*",
                 },
             ]
@@ -282,7 +278,7 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "post",
-                    "uri": "/v1alpha/{model=models/*}:generateAnswer",
+                    "uri": "/v1beta/{model=models/*}:generateAnswer",
                     "body": "*",
                 },
             ]
@@ -339,12 +335,12 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "post",
-                    "uri": "/v1alpha/{model=models/*}:generateContent",
+                    "uri": "/v1beta/{model=models/*}:generateContent",
                     "body": "*",
                 },
                 {
                     "method": "post",
-                    "uri": "/v1alpha/{model=tunedModels/*}:generateContent",
+                    "uri": "/v1beta/{model=tunedModels/*}:generateContent",
                     "body": "*",
                 },
             ]
@@ -401,12 +397,12 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "post",
-                    "uri": "/v1alpha/{model=models/*}:streamGenerateContent",
+                    "uri": "/v1beta/{model=models/*}:streamGenerateContent",
                     "body": "*",
                 },
                 {
                     "method": "post",
-                    "uri": "/v1alpha/{model=tunedModels/*}:streamGenerateContent",
+                    "uri": "/v1beta/{model=tunedModels/*}:streamGenerateContent",
                     "body": "*",
                 },
             ]
@@ -453,15 +449,15 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "get",
-                    "uri": "/v1alpha/{name=tunedModels/*/operations/*}",
+                    "uri": "/v1beta/{name=tunedModels/*/operations/*}",
                 },
                 {
                     "method": "get",
-                    "uri": "/v1alpha/{name=generatedFiles/*/operations/*}",
+                    "uri": "/v1beta/{name=generatedFiles/*/operations/*}",
                 },
                 {
                     "method": "get",
-                    "uri": "/v1alpha/{name=models/*/operations/*}",
+                    "uri": "/v1beta/{name=models/*/operations/*}",
                 },
             ]
             return http_options
@@ -486,11 +482,11 @@ class _BaseGenerativeServiceRestTransport(GenerativeServiceTransport):
             http_options: List[Dict[str, str]] = [
                 {
                     "method": "get",
-                    "uri": "/v1alpha/{name=tunedModels/*}/operations",
+                    "uri": "/v1beta/{name=tunedModels/*}/operations",
                 },
                 {
                     "method": "get",
-                    "uri": "/v1alpha/{name=models/*}/operations",
+                    "uri": "/v1beta/{name=models/*}/operations",
                 },
             ]
             return http_options

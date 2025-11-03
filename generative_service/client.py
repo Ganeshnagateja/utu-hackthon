@@ -21,7 +21,6 @@ from typing import (
     Callable,
     Dict,
     Iterable,
-    Iterator,
     Mapping,
     MutableMapping,
     MutableSequence,
@@ -44,7 +43,7 @@ from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.oauth2 import service_account  # type: ignore
 
-from google.ai.generativelanguage_v1alpha import gapic_version as package_version
+from google.ai.generativelanguage_v1beta import gapic_version as package_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault, None]
@@ -62,9 +61,9 @@ _LOGGER = std_logging.getLogger(__name__)
 
 from google.longrunning import operations_pb2  # type: ignore
 
-from google.ai.generativelanguage_v1alpha.types import generative_service, safety
-from google.ai.generativelanguage_v1alpha.types import content
-from google.ai.generativelanguage_v1alpha.types import content as gag_content
+from google.ai.generativelanguage_v1beta.types import generative_service, safety
+from google.ai.generativelanguage_v1beta.types import content
+from google.ai.generativelanguage_v1beta.types import content as gag_content
 
 from .transports.base import DEFAULT_CLIENT_INFO, GenerativeServiceTransport
 from .transports.grpc import GenerativeServiceGrpcTransport
@@ -682,9 +681,9 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 std_logging.DEBUG
             ):  # pragma: NO COVER
                 _LOGGER.debug(
-                    "Created client `google.ai.generativelanguage_v1alpha.GenerativeServiceClient`.",
+                    "Created client `google.ai.generativelanguage_v1beta.GenerativeServiceClient`.",
                     extra={
-                        "serviceName": "google.ai.generativelanguage.v1alpha.GenerativeService",
+                        "serviceName": "google.ai.generativelanguage.v1beta.GenerativeService",
                         "universeDomain": getattr(
                             self._transport._credentials, "universe_domain", ""
                         ),
@@ -695,7 +694,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                     }
                     if hasattr(self._transport, "_credentials")
                     else {
-                        "serviceName": "google.ai.generativelanguage.v1alpha.GenerativeService",
+                        "serviceName": "google.ai.generativelanguage.v1beta.GenerativeService",
                         "credentialsType": None,
                     },
                 )
@@ -731,14 +730,14 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_generate_content():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceClient()
+                client = generativelanguage_v1beta.GenerativeServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.GenerateContentRequest(
+                request = generativelanguage_v1beta.GenerateContentRequest(
                     model="model_value",
                 )
 
@@ -749,7 +748,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.GenerateContentRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.GenerateContentRequest, dict]):
                 The request object. Request to generate a completion from
                 the model.
             model (str):
@@ -761,7 +760,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            contents (MutableSequence[google.ai.generativelanguage_v1alpha.types.Content]):
+            contents (MutableSequence[google.ai.generativelanguage_v1beta.types.Content]):
                 Required. The content of the current conversation with
                 the model.
 
@@ -783,7 +782,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.GenerateContentResponse:
+            google.ai.generativelanguage_v1beta.types.GenerateContentResponse:
                 Response from the model supporting multiple candidate
                 responses.
 
@@ -869,14 +868,14 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_generate_answer():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceClient()
+                client = generativelanguage_v1beta.GenerativeServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.GenerateAnswerRequest(
+                request = generativelanguage_v1beta.GenerateAnswerRequest(
                     model="model_value",
                     answer_style="VERBOSE",
                 )
@@ -888,7 +887,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.GenerateAnswerRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.GenerateAnswerRequest, dict]):
                 The request object. Request to generate a grounded answer from the
                 ``Model``.
             model (str):
@@ -900,7 +899,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            contents (MutableSequence[google.ai.generativelanguage_v1alpha.types.Content]):
+            contents (MutableSequence[google.ai.generativelanguage_v1beta.types.Content]):
                 Required. The content of the current conversation with
                 the ``Model``. For single-turn queries, this is a single
                 question to answer. For multi-turn queries, this is a
@@ -914,7 +913,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 This corresponds to the ``contents`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            safety_settings (MutableSequence[google.ai.generativelanguage_v1alpha.types.SafetySetting]):
+            safety_settings (MutableSequence[google.ai.generativelanguage_v1beta.types.SafetySetting]):
                 Optional. A list of unique ``SafetySetting`` instances
                 for blocking unsafe content.
 
@@ -943,7 +942,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 This corresponds to the ``safety_settings`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            answer_style (google.ai.generativelanguage_v1alpha.types.GenerateAnswerRequest.AnswerStyle):
+            answer_style (google.ai.generativelanguage_v1beta.types.GenerateAnswerRequest.AnswerStyle):
                 Required. Style in which answers
                 should be returned.
 
@@ -959,7 +958,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.GenerateAnswerResponse:
+            google.ai.generativelanguage_v1beta.types.GenerateAnswerResponse:
                 Response from the model for a
                 grounded answer.
 
@@ -1038,14 +1037,14 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_stream_generate_content():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceClient()
+                client = generativelanguage_v1beta.GenerativeServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.GenerateContentRequest(
+                request = generativelanguage_v1beta.GenerateContentRequest(
                     model="model_value",
                 )
 
@@ -1057,7 +1056,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                     print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.GenerateContentRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.GenerateContentRequest, dict]):
                 The request object. Request to generate a completion from
                 the model.
             model (str):
@@ -1069,7 +1068,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            contents (MutableSequence[google.ai.generativelanguage_v1alpha.types.Content]):
+            contents (MutableSequence[google.ai.generativelanguage_v1beta.types.Content]):
                 Required. The content of the current conversation with
                 the model.
 
@@ -1091,7 +1090,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            Iterable[google.ai.generativelanguage_v1alpha.types.GenerateContentResponse]:
+            Iterable[google.ai.generativelanguage_v1beta.types.GenerateContentResponse]:
                 Response from the model supporting multiple candidate
                 responses.
 
@@ -1174,14 +1173,14 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_embed_content():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceClient()
+                client = generativelanguage_v1beta.GenerativeServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.EmbedContentRequest(
+                request = generativelanguage_v1beta.EmbedContentRequest(
                     model="model_value",
                 )
 
@@ -1192,7 +1191,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.EmbedContentRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.EmbedContentRequest, dict]):
                 The request object. Request containing the ``Content`` for the model to
                 embed.
             model (str):
@@ -1207,7 +1206,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            content (google.ai.generativelanguage_v1alpha.types.Content):
+            content (google.ai.generativelanguage_v1beta.types.Content):
                 Required. The content to embed. Only the ``parts.text``
                 fields will be counted.
 
@@ -1223,7 +1222,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.EmbedContentResponse:
+            google.ai.generativelanguage_v1beta.types.EmbedContentResponse:
                 The response to an EmbedContentRequest.
         """
         # Create or coerce a protobuf request object.
@@ -1298,17 +1297,17 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_batch_embed_contents():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceClient()
+                client = generativelanguage_v1beta.GenerativeServiceClient()
 
                 # Initialize request argument(s)
-                requests = generativelanguage_v1alpha.EmbedContentRequest()
+                requests = generativelanguage_v1beta.EmbedContentRequest()
                 requests.model = "model_value"
 
-                request = generativelanguage_v1alpha.BatchEmbedContentsRequest(
+                request = generativelanguage_v1beta.BatchEmbedContentsRequest(
                     model="model_value",
                     requests=requests,
                 )
@@ -1320,7 +1319,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.BatchEmbedContentsRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.BatchEmbedContentsRequest, dict]):
                 The request object. Batch request to get embeddings from
                 the model for a list of prompts.
             model (str):
@@ -1335,7 +1334,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            requests (MutableSequence[google.ai.generativelanguage_v1alpha.types.EmbedContentRequest]):
+            requests (MutableSequence[google.ai.generativelanguage_v1beta.types.EmbedContentRequest]):
                 Required. Embed requests for the batch. The model in
                 each of these requests must match the model specified
                 ``BatchEmbedContentsRequest.model``.
@@ -1352,7 +1351,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.BatchEmbedContentsResponse:
+            google.ai.generativelanguage_v1beta.types.BatchEmbedContentsResponse:
                 The response to a BatchEmbedContentsRequest.
         """
         # Create or coerce a protobuf request object.
@@ -1424,14 +1423,14 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
             # - It may require specifying regional endpoints when creating the service
             #   client as shown in:
             #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
+            from google.ai import generativelanguage_v1beta
 
             def sample_count_tokens():
                 # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceClient()
+                client = generativelanguage_v1beta.GenerativeServiceClient()
 
                 # Initialize request argument(s)
-                request = generativelanguage_v1alpha.CountTokensRequest(
+                request = generativelanguage_v1beta.CountTokensRequest(
                     model="model_value",
                 )
 
@@ -1442,7 +1441,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[google.ai.generativelanguage_v1alpha.types.CountTokensRequest, dict]):
+            request (Union[google.ai.generativelanguage_v1beta.types.CountTokensRequest, dict]):
                 The request object. Counts the number of tokens in the ``prompt`` sent to a
                 model.
 
@@ -1460,7 +1459,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 This corresponds to the ``model`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            contents (MutableSequence[google.ai.generativelanguage_v1alpha.types.Content]):
+            contents (MutableSequence[google.ai.generativelanguage_v1beta.types.Content]):
                 Optional. The input given to the model as a prompt. This
                 field is ignored when ``generate_content_request`` is
                 set.
@@ -1477,7 +1476,7 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
                 be of type `bytes`.
 
         Returns:
-            google.ai.generativelanguage_v1alpha.types.CountTokensResponse:
+            google.ai.generativelanguage_v1beta.types.CountTokensResponse:
                 A response from CountTokens.
 
                    It returns the model's token_count for the prompt.
@@ -1520,97 +1519,6 @@ class GenerativeServiceClient(metaclass=GenerativeServiceClientMeta):
         # Send the request.
         response = rpc(
             request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
-
-        # Done; return the response.
-        return response
-
-    def bidi_generate_content(
-        self,
-        requests: Optional[
-            Iterator[generative_service.BidiGenerateContentClientMessage]
-        ] = None,
-        *,
-        retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: Union[float, object] = gapic_v1.method.DEFAULT,
-        metadata: Sequence[Tuple[str, Union[str, bytes]]] = (),
-    ) -> Iterable[generative_service.BidiGenerateContentServerMessage]:
-        r"""Low-Latency bidirectional streaming API that supports
-        audio and video streaming inputs can produce multimodal
-        output streams (audio and text).
-
-        .. code-block:: python
-
-            # This snippet has been automatically generated and should be regarded as a
-            # code template only.
-            # It will require modifications to work:
-            # - It may require correct/in-range values for request initialization.
-            # - It may require specifying regional endpoints when creating the service
-            #   client as shown in:
-            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
-            from google.ai import generativelanguage_v1alpha
-
-            def sample_bidi_generate_content():
-                # Create a client
-                client = generativelanguage_v1alpha.GenerativeServiceClient()
-
-                # Initialize request argument(s)
-                setup = generativelanguage_v1alpha.BidiGenerateContentSetup()
-                setup.model = "model_value"
-
-                request = generativelanguage_v1alpha.BidiGenerateContentClientMessage(
-                    setup=setup,
-                )
-
-                # This method expects an iterator which contains
-                # 'generativelanguage_v1alpha.BidiGenerateContentClientMessage' objects
-                # Here we create a generator that yields a single `request` for
-                # demonstrative purposes.
-                requests = [request]
-
-                def request_generator():
-                    for request in requests:
-                        yield request
-
-                # Make the request
-                stream = client.bidi_generate_content(requests=request_generator())
-
-                # Handle the response
-                for response in stream:
-                    print(response)
-
-        Args:
-            requests (Iterator[google.ai.generativelanguage_v1alpha.types.BidiGenerateContentClientMessage]):
-                The request object iterator. Messages sent by the client in the
-                BidiGenerateContent call.
-            retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                should be retried.
-            timeout (float): The timeout for this request.
-            metadata (Sequence[Tuple[str, Union[str, bytes]]]): Key/value pairs which should be
-                sent along with the request as metadata. Normally, each value must be of type `str`,
-                but for metadata keys ending with the suffix `-bin`, the corresponding values must
-                be of type `bytes`.
-
-        Returns:
-            Iterable[google.ai.generativelanguage_v1alpha.types.BidiGenerateContentServerMessage]:
-                Response message for the
-                BidiGenerateContent call.
-
-        """
-
-        # Wrap the RPC method; this adds retry and timeout information,
-        # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.bidi_generate_content]
-
-        # Validate the universe domain.
-        self._validate_universe_domain()
-
-        # Send the request.
-        response = rpc(
-            requests,
             retry=retry,
             timeout=timeout,
             metadata=metadata,
